@@ -1,12 +1,19 @@
 const btnBuscar = document.getElementById("btnBuscar");
+const searchCity = document.getElementById("searchCity");
+
+searchCity.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const city_name_search = searchCity.value.toLowerCase();
+    apiCall(city_name_search);
+  }
+});
 
 if (btnBuscar) {
   btnBuscar.addEventListener("click", function () {
-    const searchCity = document
-      .getElementById("searchCity")
-      .value.toLowerCase();
+    const city_name_search = searchCity.value.toLowerCase();
     console.log(searchCity);
-    apiCall(searchCity);
+    apiCall(city_name_search);
   });
 }
 async function apiCall(city) {
@@ -44,7 +51,7 @@ function mostarStats(citySearch) {
     containerIMG.src = "sources/icons/snow.png";
   } else if (code >= 700 && code <= 751) {
     containerIMG.src = "sources/icons/mist.png";
-  } else if (code >= 300 && code <= 623){
+  } else if (code >= 300 && code <= 623) {
     containerIMG.src = "sources/icons/rain.png";
   }
 
